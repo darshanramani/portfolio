@@ -149,3 +149,43 @@
   });
 
 })(jQuery);
+
+// ===== Floating Text Bubbles =====
+document.addEventListener('DOMContentLoaded', function () {
+  const messages = [
+    "Welcome to Darshan's site 👋",
+    "Open to work opportunities 🚀",
+    "Open to AI / Data roles 💼",
+    "2+ years industry experience",
+    "Ex - Deloitte",
+    "Building AI & Data solutions",
+    "Let's connect! 🤝",
+    "Currently in Canada 🇨🇦",
+  ];
+
+  const container = document.getElementById('bubble-container');
+  if (!container) return;
+
+  function createBubble() {
+    const bubble = document.createElement('div');
+    bubble.className = 'bubble';
+    bubble.textContent = messages[Math.floor(Math.random() * messages.length)];
+
+    // random horizontal position (right half)
+    bubble.style.left = (50 + Math.random() * 40) + '%';
+
+    // random animation speed
+    const duration = 7 + Math.random() * 4;
+    bubble.style.animationDuration = duration + 's';
+
+    container.appendChild(bubble);
+
+    // remove after animation
+    setTimeout(() => bubble.remove(), duration * 1000);
+  }
+
+  // create bubbles every few seconds
+  setInterval(createBubble, 2500);
+  // start with a few immediately
+  for (let i = 0; i < 3; i++) createBubble();
+});
